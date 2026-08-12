@@ -1,8 +1,8 @@
 version: 1
 registry_id: week05_support_metrics_v1
-registry_version: 1.1.0
+registry_version: 1.2.0
 owner: analytics_engineering
-description: "Governed Week05 metrics exposed to query_support_kpis_v1."
+description: "Governed Week05 metrics exposed to query_support_kpis_v1 (includes resolution_rate)."
 source_model: support_kpi_mart
 safe_view: agent_tool_input_view
 time_dimension: metric_date
@@ -198,3 +198,20 @@ metrics:
     version: 1.1.0
     allowed_roles: ["support_ops", "instructor", "admin"]
     quality_tests: ["between_0_and_1"]
+  - name: resolution_rate
+    label: "Resolution Rate"
+    business_name_zh: "工单解决率"
+    description: "Resolved or closed tickets divided by created tickets in the selected window."
+    business_definition_zh: "已解决/已关闭工单数 / 当天创建工单数。与 first_resolution_rate（一次解决率）不同：本指标只看最终是否解决。"
+    owner: support_ops
+    metric_type: ratio
+    formula: "resolved_ticket_count / ticket_count"
+    numerator: resolved_ticket_count
+    denominator: ticket_count
+    aggregation: avg
+    unit: ratio
+    sensitivity: low
+    definition_status: production
+    version: 1.1.0
+    allowed_roles: ["support_ops", "instructor", "admin"]
+    quality_tests: ["between_0_and_1", "non_negative"]

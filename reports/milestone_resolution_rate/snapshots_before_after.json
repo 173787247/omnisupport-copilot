@@ -1,0 +1,124 @@
+{
+  "report_version": "week04_iceberg_metadata_inspection_v1",
+  "generated_at": "2026-08-12T08:07:57.265011+00:00",
+  "table": "silver.ticket_fact",
+  "view": "snapshots",
+  "row_count": 5,
+  "rows": [
+    {
+      "snapshot_id": 4240657546002969912,
+      "parent_snapshot_id": null,
+      "sequence_number": 1,
+      "timestamp_ms": 1786522050848,
+      "operation": "append",
+      "summary": {
+        "operation": "append",
+        "added-files-size": "28728",
+        "added-data-files": "1",
+        "added-records": "500",
+        "omni.week": "week04",
+        "omni.data_release_id": "week04-dev-local",
+        "omni.ingest_batch_id": "week04-smoke",
+        "omni.write_mode": "deterministic_full_refresh",
+        "total-data-files": "1",
+        "total-delete-files": "0",
+        "total-records": "500",
+        "total-files-size": "28728",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      }
+    },
+    {
+      "snapshot_id": 4316611413327514255,
+      "parent_snapshot_id": 4240657546002969912,
+      "sequence_number": 2,
+      "timestamp_ms": 1786522068210,
+      "operation": "delete",
+      "summary": {
+        "operation": "delete",
+        "removed-files-size": "28728",
+        "deleted-data-files": "1",
+        "deleted-records": "500",
+        "omni.week": "week04",
+        "omni.data_release_id": "week04-dev-local",
+        "omni.ingest_batch_id": "week04-smoke",
+        "omni.write_mode": "deterministic_full_refresh",
+        "total-data-files": "0",
+        "total-delete-files": "0",
+        "total-records": "0",
+        "total-files-size": "0",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      }
+    },
+    {
+      "snapshot_id": 3705855403373275092,
+      "parent_snapshot_id": 4316611413327514255,
+      "sequence_number": 3,
+      "timestamp_ms": 1786522068268,
+      "operation": "append",
+      "summary": {
+        "operation": "append",
+        "added-files-size": "28914",
+        "added-data-files": "1",
+        "added-records": "491",
+        "omni.week": "week04",
+        "omni.data_release_id": "week04-dev-local",
+        "omni.ingest_batch_id": "week04-smoke",
+        "omni.write_mode": "deterministic_full_refresh",
+        "total-data-files": "1",
+        "total-delete-files": "0",
+        "total-records": "491",
+        "total-files-size": "28914",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      }
+    },
+    {
+      "snapshot_id": 7737682977147562628,
+      "parent_snapshot_id": 3705855403373275092,
+      "sequence_number": 4,
+      "timestamp_ms": 1786522074967,
+      "operation": "delete",
+      "summary": {
+        "operation": "delete",
+        "removed-files-size": "28914",
+        "deleted-data-files": "1",
+        "deleted-records": "491",
+        "omni.week": "week04",
+        "omni.data_release_id": "week04-dev-local",
+        "omni.ingest_batch_id": "week04-smoke",
+        "omni.write_mode": "deterministic_full_refresh",
+        "total-data-files": "0",
+        "total-delete-files": "0",
+        "total-records": "0",
+        "total-files-size": "0",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      }
+    },
+    {
+      "snapshot_id": 5804128467664335385,
+      "parent_snapshot_id": 7737682977147562628,
+      "sequence_number": 5,
+      "timestamp_ms": 1786522075023,
+      "operation": "append",
+      "summary": {
+        "operation": "append",
+        "added-files-size": "28748",
+        "added-data-files": "1",
+        "added-records": "500",
+        "omni.week": "week04",
+        "omni.data_release_id": "week04-dev-local",
+        "omni.ingest_batch_id": "week04-smoke",
+        "omni.write_mode": "deterministic_full_refresh",
+        "total-data-files": "1",
+        "total-delete-files": "0",
+        "total-records": "500",
+        "total-files-size": "28748",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      }
+    }
+  ]
+}

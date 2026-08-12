@@ -1,7 +1,7 @@
 {
   "mode": "backfill",
   "source_id": "structured:tickets:seed_batch_001",
-  "dry_run": true,
+  "dry_run": false,
   "batch_id": "week05-demo-backfill-20260321",
   "start_cursor": "2026-03-21T00:00:00Z",
   "end_cursor": "2026-03-21T23:59:59Z",
@@ -17,11 +17,28 @@
     "Inspect the latest ingest checkpoint before taking recovery action.",
     "Construct a historical cursor window and run the batch in dry-run first.",
     "Backfill cursor window from 2026-03-21T00:00:00Z to 2026-03-21T23:59:59Z.",
-    "Write a Week03 recovery decision report before touching downstream storage."
+    "Write a Week03 recovery decision report before touching downstream storage.",
+    "Run ticket_ingest through the recovery entrypoint; non-dry-run execution uses the idempotent raw-event guard and checkpoint update."
   ],
   "warnings": [],
   "recommended_action": "proceed_to_next_stage",
   "status": "ok",
-  "execution_result": null,
-  "generated_at": "2026-08-12T08:07:07.636778+00:00"
+  "execution_result": {
+    "total": 500,
+    "valid": 500,
+    "invalid": 0,
+    "processed": 500,
+    "inserted": 7,
+    "skipped": 493,
+    "errors": 0,
+    "bronze_inserted": 7,
+    "bronze_duplicates": 493,
+    "silver_upserted": 500,
+    "batch_id": "week05-demo-backfill-20260321",
+    "input": "data/canonization/tickets/tickets-seed-week05.jsonl",
+    "dry_run": false,
+    "state_path": "/workspace/data/canonization/checkpoints/week03_ingest_state.json",
+    "checkpoints_written": 1
+  },
+  "generated_at": "2026-08-12T08:07:09.019275+00:00"
 }

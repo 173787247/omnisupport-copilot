@@ -1,0 +1,17 @@
+{
+  "report_version": "week04_lakehouse_materialization_v1",
+  "generated_at": "2026-08-12T08:07:55.062309+00:00",
+  "data_release_id": "week04-dev-local",
+  "ingest_batch_id": "week04-smoke",
+  "dry_run": false,
+  "plan": false,
+  "tables": {
+    "silver.ticket_fact": {
+      "source_rows": 500,
+      "write_mode": "deterministic_full_refresh",
+      "action": "overwrite",
+      "snapshot_id": 5804128467664335385,
+      "location": "s3://omni-lakehouse/warehouse/silver.db/ticket_fact"
+    }
+  }
+}

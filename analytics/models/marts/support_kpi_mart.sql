@@ -21,7 +21,8 @@ with daily as (
         avg_handle_time_minutes,
         escalation_rate,
         sla_breach_rate,
-        first_resolution_rate
+        first_resolution_rate,
+        resolution_rate
     from {{ ref('int_ticket_activity_daily') }}
 ),
 
@@ -50,7 +51,8 @@ metric_rows as (
         daily.avg_handle_time_minutes,
         daily.escalation_rate,
         daily.sla_breach_rate,
-        daily.first_resolution_rate
+        daily.first_resolution_rate,
+        daily.resolution_rate
     from daily
     cross join lateral (
         values
@@ -64,7 +66,8 @@ metric_rows as (
             ('avg_handle_time_minutes', daily.avg_handle_time_minutes::numeric),
             ('first_resolution_rate', daily.first_resolution_rate::numeric),
             ('escalation_rate', daily.escalation_rate::numeric),
-            ('sla_breach_rate', daily.sla_breach_rate::numeric)
+            ('sla_breach_rate', daily.sla_breach_rate::numeric),
+            ('resolution_rate', daily.resolution_rate::numeric)
     ) as metrics(metric_name, metric_value)
     where metrics.metric_value is not null
 )
@@ -93,6 +96,7 @@ select
     escalation_rate,
     sla_breach_rate,
     first_resolution_rate,
+    resolution_rate,
     coalesce(data_release_id, '{{ var("week05_data_release_id") }}') as data_release_id,
     current_timestamp as generated_at
 from metric_rows

@@ -1,0 +1,8 @@
+{
+  "gap_date": "2026-04-20",
+  "deleted_ticket_fact": "DELETE 9",
+  "deleted_raw_ticket_event": "DELETE 9",
+  "ticket_fact_before": 500,
+  "ticket_fact_after": 491,
+  "note": "Simulated ingest outage for one created_at partition"
+}

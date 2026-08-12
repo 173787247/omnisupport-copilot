@@ -1,0 +1,134 @@
+{
+  "allowed": true,
+  "status": "ok",
+  "rows": [
+    {
+      "metric_date": "2026-04-01",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_edge_gateway",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-02",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_edge_gateway",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 1.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-03",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_studio",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-03",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_workspace",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.25,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-04",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_edge_gateway",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.5,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-04",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_studio",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 1.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-04",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_workspace",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-05",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_edge_gateway",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-06",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_edge_gateway",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 1.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-06",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_studio",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    }
+  ],
+  "denial_code": null,
+  "message": null,
+  "audit_id": "a6f6c46d-ff9d-473e-822a-d4c53de61428",
+  "trace_id": "trace-resolution-rate-sample",
+  "policy_applied": [
+    "tool_contract",
+    "metric_registry",
+    "safe_view",
+    "parameterized_sql",
+    "semantic_aggregation"
+  ],
+  "data_freshness": {
+    "generated_at_max": "2026-08-12T08:09:50.987276+00:00",
+    "release_id": "data-v0.1.0",
+    "registry_id": "week05_support_metrics_v1",
+    "registry_version": "1.2.0"
+  },
+  "audit": {
+    "audit_id": "a6f6c46d-ff9d-473e-822a-d4c53de61428",
+    "tool_name": "query_support_kpis_v1",
+    "registry_id": "week05_support_metrics_v1",
+    "registry_version": "1.2.0",
+    "actor_role": "instructor",
+    "actor_id": "instructor-demo",
+    "trace_id": "trace-resolution-rate-sample",
+    "purpose": "classroom_demo",
+    "metrics": [
+      "resolution_rate"
+    ],
+    "dimensions": [
+      "product_line"
+    ],
+    "filters": {},
+    "actor_org_ids": [],
+    "date_from": "2026-04-01",
+    "date_to": "2026-04-30",
+    "row_count": 10,
+    "release_id": "dev-local",
+    "safe_view": "agent_tool_input_view",
+    "query_fingerprint": "d2cd8a1d549e775b",
+    "policy_applied": [
+      "tool_contract",
+      "metric_registry",
+      "safe_view",
+      "parameterized_sql",
+      "semantic_aggregation"
+    ]
+  }
+}

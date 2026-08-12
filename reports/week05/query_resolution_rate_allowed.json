@@ -1,0 +1,90 @@
+{
+  "allowed": true,
+  "status": "ok",
+  "rows": [
+    {
+      "metric_date": "2026-04-04",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_studio",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 1.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-17",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_studio",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-25",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_workspace",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 0.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    },
+    {
+      "metric_date": "2026-04-26",
+      "metric_name": "resolution_rate",
+      "product_line": "northstar_edge_gateway",
+      "data_release_id": "data-v0.1.0",
+      "metric_value": 1.0,
+      "generated_at": "2026-08-12T08:09:50.987276+00:00"
+    }
+  ],
+  "denial_code": null,
+  "message": null,
+  "audit_id": "c47c82fe-104b-418d-8b44-c5a8cb3140f6",
+  "trace_id": "trace-resolution-rate-ok",
+  "policy_applied": [
+    "tool_contract",
+    "metric_registry",
+    "safe_view",
+    "parameterized_sql",
+    "semantic_aggregation",
+    "org_scope_filter"
+  ],
+  "data_freshness": {
+    "generated_at_max": "2026-08-12T08:09:50.987276+00:00",
+    "release_id": "data-v0.1.0",
+    "registry_id": "week05_support_metrics_v1",
+    "registry_version": "1.2.0"
+  },
+  "audit": {
+    "audit_id": "c47c82fe-104b-418d-8b44-c5a8cb3140f6",
+    "tool_name": "query_support_kpis_v1",
+    "registry_id": "week05_support_metrics_v1",
+    "registry_version": "1.2.0",
+    "actor_role": "support_ops",
+    "actor_id": "ops-demo",
+    "trace_id": "trace-resolution-rate-ok",
+    "purpose": "support_ops_analysis",
+    "metrics": [
+      "resolution_rate"
+    ],
+    "dimensions": [
+      "product_line"
+    ],
+    "filters": {},
+    "actor_org_ids": [
+      "org-56a9c7e0eef574bb"
+    ],
+    "date_from": "2026-04-01",
+    "date_to": "2026-04-30",
+    "row_count": 4,
+    "release_id": "dev-local",
+    "safe_view": "agent_tool_input_view",
+    "query_fingerprint": "31047e14dfadc833",
+    "policy_applied": [
+      "tool_contract",
+      "metric_registry",
+      "safe_view",
+      "parameterized_sql",
+      "semantic_aggregation",
+      "org_scope_filter"
+    ]
+  }
+}

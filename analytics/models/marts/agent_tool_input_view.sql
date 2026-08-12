@@ -32,5 +32,6 @@ where metric_name in (
     'avg_handle_time_minutes',
     'first_resolution_rate',
     'escalation_rate',
-    'sla_breach_rate'
+    'sla_breach_rate',
+    'resolution_rate'
 )

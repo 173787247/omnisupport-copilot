@@ -1,9 +1,9 @@
 {
   "report_version": "week03_ticket_ingest_smoke_report_v1",
   "report_kind": "ticket_ingest_smoke",
-  "run_id": "ticket-ingest::week05-demo-backfill-20260321",
-  "generated_at": "2026-08-12T08:07:12.277015+00:00",
-  "batch_id": "week05-demo-backfill-20260321",
+  "run_id": "ticket-ingest::week05-demo-idempotent-rerun",
+  "generated_at": "2026-08-12T08:07:16.793373+00:00",
+  "batch_id": "week05-demo-idempotent-rerun",
   "input": "data/canonization/tickets/tickets-seed-week05.jsonl",
   "dry_run": false,
   "summary": {
@@ -11,11 +11,11 @@
     "valid": 500,
     "invalid": 0,
     "processed": 500,
-    "inserted": 7,
-    "skipped": 493,
+    "inserted": 0,
+    "skipped": 500,
     "errors": 0,
-    "bronze_inserted": 7,
-    "bronze_duplicates": 493,
+    "bronze_inserted": 0,
+    "bronze_duplicates": 500,
     "silver_upserted": 500
   },
   "checkpoint": {

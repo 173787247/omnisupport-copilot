@@ -36,6 +36,7 @@ SAFE_VIEW_METRICS = {
     "first_resolution_rate",
     "escalation_rate",
     "sla_breach_rate",
+    "resolution_rate",
 }
 REQUIRED_METRIC_FIELDS_V11 = {
     "business_name_zh",

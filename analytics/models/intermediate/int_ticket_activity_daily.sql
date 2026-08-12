@@ -29,6 +29,10 @@ select
     (
         sum(case when is_first_resolution_proxy then 1 else 0 end)::numeric
         / nullif(sum(case when is_resolved then 1 else 0 end)::numeric, 0)
-    )::numeric(12, 4) as first_resolution_rate
+    )::numeric(12, 4) as first_resolution_rate,
+    (
+        sum(case when is_resolved then 1 else 0 end)::numeric
+        / nullif(count(*)::numeric, 0)
+    )::numeric(12, 4) as resolution_rate
 from {{ ref('int_support_cases') }}
 group by 1, 2, 3, 4, 5, 6, 7

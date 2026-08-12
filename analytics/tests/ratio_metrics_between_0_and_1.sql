@@ -5,6 +5,7 @@ from {{ ref('support_kpi_mart') }}
 where metric_name in (
     'first_resolution_rate',
     'escalation_rate',
-    'sla_breach_rate'
+    'sla_breach_rate',
+    'resolution_rate'
 )
 and (metric_value < 0 or metric_value > 1)

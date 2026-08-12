@@ -25,7 +25,13 @@ COPY governance ./governance
 COPY scripts ./scripts
 COPY tests ./tests
 
-RUN pip install --no-cache-dir \
+# Prefer Aliyun PyPI for CN networks (Tsinghua can time out under load).
+# Docker Hub pulls still go through daemon.json registry-mirrors.
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir \
+    --default-timeout=120 \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
+    --trusted-host mirrors.aliyun.com \
     -r /tmp/rag_api_requirements.txt \
     -r /tmp/tool_api_requirements.txt \
     -e ".[dev]"

@@ -29,7 +29,7 @@ renamed as (
         schema_version,
         cast(created_at as date) as created_date,
         case when lower(status::text) in ('open', 'pending_customer', 'in_progress', 'escalated') then true else false end as is_open,
-        case when lower(status::text) = 'resolved' then true else false end as is_resolved,
+        case when lower(status::text) in ('resolved', 'closed') then true else false end as is_resolved,
         case when lower(status::text) = 'escalated' then true else false end as is_escalated,
         case when lower(priority::text) in ('p1_critical', 'p1') then true else false end as is_p1,
         case

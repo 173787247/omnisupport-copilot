@@ -11,9 +11,10 @@ def test_metric_registry_matches_safe_view_contract():
     result = validate_registry(registry)
 
     assert result["valid"], result["errors"]
-    assert result["metric_count"] >= 11
+    assert result["metric_count"] >= 12
     assert result["experimental_metric_count"] >= 1
     assert "first_resolution_rate" in result["metric_names"]
+    assert "resolution_rate" in result["metric_names"]
     assert "metric_value" in result["safe_view_columns"]
 
 

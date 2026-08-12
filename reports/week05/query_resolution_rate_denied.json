@@ -1,0 +1,47 @@
+{
+  "allowed": false,
+  "status": "denied",
+  "rows": [],
+  "denial_code": "ROLE_DENIED",
+  "message": "role is not allowed: viewer",
+  "audit_id": "5664ad9a-bfff-45b8-953a-04b409283b77",
+  "trace_id": null,
+  "policy_applied": [
+    "tool_contract",
+    "metric_registry",
+    "role_policy"
+  ],
+  "data_freshness": {
+    "generated_at_max": null,
+    "release_id": "dev-local",
+    "registry_id": "week05_support_metrics_v1",
+    "registry_version": "1.2.0"
+  },
+  "audit": {
+    "audit_id": "5664ad9a-bfff-45b8-953a-04b409283b77",
+    "tool_name": "query_support_kpis_v1",
+    "registry_id": "week05_support_metrics_v1",
+    "registry_version": "1.2.0",
+    "actor_role": "viewer",
+    "actor_id": "unauthorized",
+    "trace_id": null,
+    "purpose": "classroom_demo",
+    "metrics": [
+      "resolution_rate"
+    ],
+    "dimensions": [],
+    "filters": {},
+    "actor_org_ids": [],
+    "date_from": "2026-04-01",
+    "date_to": "2026-04-30",
+    "row_count": 0,
+    "release_id": "dev-local",
+    "safe_view": "agent_tool_input_view",
+    "query_fingerprint": "f92af59f33ffba0a",
+    "policy_applied": [
+      "tool_contract",
+      "metric_registry",
+      "role_policy"
+    ]
+  }
+}
