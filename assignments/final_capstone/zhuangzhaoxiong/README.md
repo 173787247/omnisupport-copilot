@@ -8,7 +8,7 @@
 
 ```text
 baseline_commit: 1473db6
-candidate_commit: (push 后为本分支最新 SHA)
+candidate_commit: 81a87a6
 theme: webhook-troubleshooting
 provider/model: deterministic fallback | ollama optional
 release_id: capstone-v1.0.0
