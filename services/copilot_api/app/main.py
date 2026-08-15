@@ -20,11 +20,13 @@ from app.models import (
     ApprovalDecision,
     ConversationCreate,
     FeedbackCreate,
+    HandlingPlanRequest,
     KpiQuery,
     LoginRequest,
     MessageCreate,
     TicketActionCreate,
 )
+from app.handling_plan import build_handling_plan_card
 from app.security import (
     Principal,
     create_access_token,
@@ -550,6 +552,86 @@ async def ask_copilot(
         result["retrieval_debug"] = answer.get("retrieval_debug")
         result["graph_debug"] = answer.get("graph_debug")
     return result
+
+
+@app.post("/api/v1/handling-plan", status_code=200)
+async def create_handling_plan(
+    payload: HandlingPlanRequest,
+    request: Request,
+    principal: Principal = Depends(current_principal),
+) -> dict[str, Any]:
+    """Return a structured problem-handling plan card grounded on RAG evidence."""
+    rag_request = {
+        "question": payload.question,
+        "tenant_id": principal.tenant_id,
+        "product_line": payload.product_line or "northstar_workspace",
+        "actor_role": principal.role,
+        "visibility_scope": "internal",
+        "top_k": 5,
+        "retrieval_mode": payload.retrieval_mode,
+        "include_debug": payload.include_debug,
+    }
+    with traced_span(
+        "product.handling_plan",
+        kind="CHAIN",
+        attributes={
+            "omni.theme": "webhook-troubleshooting",
+            "omni.actor.role": principal.role,
+            "omni.ticket_id": payload.ticket_id or "",
+        },
+    ):
+        try:
+            async with httpx.AsyncClient(timeout=45.0) as client:
+                response = await client.post(
+                    f"{settings.rag_api_url}/rag/answer",
+                    json=rag_request,
+                    headers={
+                        "X-Service-Token": settings.internal_service_token,
+                        "X-Actor-ID": principal.user_id,
+                        "X-Actor-Role": principal.role,
+                        "X-Tenant-ID": principal.tenant_id,
+                        "X-Request-ID": request.state.request_id,
+                    },
+                )
+                response.raise_for_status()
+                answer = response.json()
+        except httpx.HTTPError as exc:
+            await _audit(
+                principal,
+                event_type="copilot.handling_plan",
+                resource_type="handling_plan",
+                resource_id=payload.ticket_id or "none",
+                outcome="dependency_failed",
+                request_id=request.state.request_id,
+                details={"dependency": "rag_api", "error_type": type(exc).__name__},
+            )
+            raise HTTPException(status_code=502, detail="rag_api_unavailable") from exc
+
+    card = build_handling_plan_card(question=payload.question, rag=answer)
+    await _audit(
+        principal,
+        event_type="copilot.handling_plan",
+        resource_type="handling_plan",
+        resource_id=payload.ticket_id or card.get("trace_id") or "none",
+        outcome="abstained" if card.get("abstain_reason") else "success",
+        request_id=request.state.request_id,
+        trace_id=card.get("trace_id"),
+        details={
+            "theme": card.get("theme"),
+            "confidence": card.get("confidence"),
+            "needs_clarification": card.get("needs_clarification"),
+            "proposed_action": card.get("proposed_action"),
+            "citation_count": len(card.get("citations") or []),
+            "protected_identifiers": card.get("protected_identifiers"),
+        },
+    )
+    if payload.include_debug:
+        card["retrieval_debug"] = answer.get("retrieval_debug")
+        card["query_rewrite_debug"] = answer.get("query_rewrite_debug")
+        card["generation_mode"] = answer.get("generation_mode")
+        card["generation_provider"] = answer.get("generation_provider")
+        card["generation_model"] = answer.get("generation_model")
+    return card
 
 
 @app.post("/api/v1/messages/{message_id}/feedback", status_code=201)

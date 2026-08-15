@@ -47,6 +47,16 @@ class TicketActionCreate(BaseModel):
     idempotency_key: str = Field(min_length=8, max_length=160)
 
 
+class HandlingPlanRequest(BaseModel):
+    question: str = Field(min_length=2, max_length=2048)
+    ticket_id: str | None = Field(default=None, max_length=64)
+    retrieval_mode: Literal[
+        "hybrid", "auto", "graph_local", "graph_global", "graph_multihop", "graph_drift"
+    ] = "hybrid"
+    include_debug: bool = False
+    product_line: str | None = Field(default="northstar_workspace", max_length=80)
+
+
 class ApprovalDecision(BaseModel):
     approved: bool
     reason: str = Field(min_length=5, max_length=1000)

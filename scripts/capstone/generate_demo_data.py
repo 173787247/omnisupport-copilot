@@ -166,7 +166,12 @@ def generate_tickets(
 
 def generate_manifests(*, root: Path, output_dir: Path) -> list[Path]:
     grouped = {
-        "northstar_workspace": ["workspace-admin-recovery.html", "workspace-api-webhook.html"],
+        "northstar_workspace": [
+            "workspace-admin-recovery.html",
+            "workspace-api-webhook.html",
+            "workspace-webhook-signature-401.html",
+            "workspace-webhook-retry-dedup.html",
+        ],
         "northstar_edge_gateway": ["edge-gateway-tls-recovery.html"],
         "northstar_studio": ["studio-job-recovery.html"],
         "cross_product": ["support-credit-policy.html", "security-support-boundary.html"],

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Webhook signature and HTTP 401 recovery</title></head>
+<body><article>
+<h1>Webhook signature verification and HTTP 401 recovery</h1>
+<p>Version 3.2. Support visibility: internal. Error codes: WS-WEBHOOK-401 and WS-SIG-MISMATCH.</p>
+<h2>Symptom</h2>
+<p>Delivery logs show HTTP 401, or the consumer rejects the request with signature mismatch after a signing secret rotation.</p>
+<h2>Diagnostic order</h2>
+<ol>
+<li>Confirm the consumer verifies the <code>X-Northstar-Signature</code> header using HMAC-SHA256 over the raw request body.</li>
+<li>Check whether the workspace is in dual-secret mode. During rotation, both current and next secrets must be accepted for at least 24 hours.</li>
+<li>Compare the timestamp skew. Reject deliveries older than five minutes to prevent replay, but allow clock skew up to 60 seconds.</li>
+<li>Replay one failed delivery with the same event identifier. Consumers must remain idempotent on event identifier.</li>
+<li>Only after the consumer accepts both secrets, retire the old secret. Bulk secret force-reset requires a support lead.</li>
+</ol>
+<h2>Safety boundary</h2>
+<p>Support agents must not paste signing secrets into chat, tickets that customers can read, or Phoenix traces. Secret rotation is a privileged change and requires HITL when performed by OmniSupport tools.</p>
+<h2>Success criteria</h2>
+<p>One replayed delivery returns HTTP 2xx, signature verification succeeds with the active secret, and no duplicate business side effect is created for the same event identifier.</p>
+</article></body></html>

@@ -1,0 +1,46 @@
+{
+  "manifest_id": "manifest-final-webhook-pack-20260815-001",
+  "schema_version": "source_manifest_v1",
+  "batch_id": "batch-final-webhook-knowledge-v1",
+  "modality": "document",
+  "source_type": "help_center",
+  "product_line": "northstar_workspace",
+  "license_tag": "course_synthetic",
+  "contract_ref": "omni://contracts/data/doc_asset/v1",
+  "load_mode": "full_snapshot",
+  "canonization_status": "canonized",
+  "gate_policy": {
+    "on_missing_checksum": "reject",
+    "on_partial_metadata": "warn",
+    "on_missing_metadata": "quarantine",
+    "on_pii_gap": "quarantine",
+    "on_contract_mismatch": "reject",
+    "on_unknown_license": "reject"
+  },
+  "assets": [
+    {
+      "source_id": "doc:capstone:workspace-webhook-signature-401",
+      "source_url_or_path": "data/capstone/knowledge/workspace-webhook-signature-401.html",
+      "asset_type": "html",
+      "contract_ref": "omni://contracts/data/doc_asset/v1",
+      "metadata_status": "complete",
+      "pii_scan_status": "clear",
+      "language": "en",
+      "notes": "Final capstone synthetic webhook signature/401 runbook."
+    },
+    {
+      "source_id": "doc:capstone:workspace-webhook-retry-dedup",
+      "source_url_or_path": "data/capstone/knowledge/workspace-webhook-retry-dedup.html",
+      "asset_type": "html",
+      "contract_ref": "omni://contracts/data/doc_asset/v1",
+      "metadata_status": "complete",
+      "pii_scan_status": "clear",
+      "language": "en",
+      "notes": "Final capstone synthetic webhook retry/dedup runbook."
+    }
+  ],
+  "ingest_config": {"parser": "auto", "chunk_size": 420, "chunk_overlap": 60, "pii_scan": true},
+  "created_at": "2026-08-15T00:00:00Z",
+  "owner": "zhuangzhaoxiong",
+  "notes": "Student final-capstone webhook knowledge pack (2 docs)."
+}

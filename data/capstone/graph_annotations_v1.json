@@ -34,6 +34,40 @@
         {"type": "APPLIES_TO_VERSION", "source_type": "RESOLUTION", "source": "Verify endpoint and replay one idempotent delivery", "target_type": "VERSION", "target": "3.2"}
       ]
     },
+    "doc:capstone:workspace-webhook-signature-401": {
+      "product_line": "northstar_workspace",
+      "entities": [
+        {"type": "PRODUCT", "name": "Northstar Workspace"},
+        {"type": "ISSUE", "name": "Webhook signature HTTP 401"},
+        {"type": "SYMPTOM", "name": "Signature mismatch after secret rotation"},
+        {"type": "ERROR_CODE", "name": "WS-WEBHOOK-401"},
+        {"type": "RESOLUTION", "name": "Accept dual secrets then replay one delivery"},
+        {"type": "VERSION", "name": "3.2"}
+      ],
+      "relations": [
+        {"type": "HAS_ISSUE", "source_type": "PRODUCT", "source": "Northstar Workspace", "target_type": "ISSUE", "target": "Webhook signature HTTP 401"},
+        {"type": "HAS_SYMPTOM", "source_type": "ISSUE", "source": "Webhook signature HTTP 401", "target_type": "SYMPTOM", "target": "Signature mismatch after secret rotation"},
+        {"type": "RESOLVED_BY", "source_type": "ISSUE", "source": "Webhook signature HTTP 401", "target_type": "RESOLUTION", "target": "Accept dual secrets then replay one delivery"},
+        {"type": "APPLIES_TO_VERSION", "source_type": "RESOLUTION", "source": "Accept dual secrets then replay one delivery", "target_type": "VERSION", "target": "3.2"}
+      ]
+    },
+    "doc:capstone:workspace-webhook-retry-dedup": {
+      "product_line": "northstar_workspace",
+      "entities": [
+        {"type": "PRODUCT", "name": "Northstar Workspace"},
+        {"type": "ISSUE", "name": "Webhook retry storm and duplicates"},
+        {"type": "SYMPTOM", "name": "HTTP 429/5xx with duplicated business effects"},
+        {"type": "ERROR_CODE", "name": "WS-DUP-EVENT"},
+        {"type": "RESOLUTION", "name": "Deduplicate by event id and one-by-one replay"},
+        {"type": "VERSION", "name": "3.2"}
+      ],
+      "relations": [
+        {"type": "HAS_ISSUE", "source_type": "PRODUCT", "source": "Northstar Workspace", "target_type": "ISSUE", "target": "Webhook retry storm and duplicates"},
+        {"type": "HAS_SYMPTOM", "source_type": "ISSUE", "source": "Webhook retry storm and duplicates", "target_type": "SYMPTOM", "target": "HTTP 429/5xx with duplicated business effects"},
+        {"type": "RESOLVED_BY", "source_type": "ISSUE", "source": "Webhook retry storm and duplicates", "target_type": "RESOLUTION", "target": "Deduplicate by event id and one-by-one replay"},
+        {"type": "APPLIES_TO_VERSION", "source_type": "RESOLUTION", "source": "Deduplicate by event id and one-by-one replay", "target_type": "VERSION", "target": "3.2"}
+      ]
+    },
     "doc:capstone:edge-gateway-tls-recovery": {
       "product_line": "northstar_edge_gateway",
       "entities": [

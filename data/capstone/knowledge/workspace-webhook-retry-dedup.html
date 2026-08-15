@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Webhook retry backoff and duplicate delivery</title></head>
+<body><article>
+<h1>Webhook retry backoff and duplicate delivery control</h1>
+<p>Version 3.2. Support visibility: internal. Error codes: WS-WEBHOOK-429, WS-WEBHOOK-5XX, and WS-DUP-EVENT.</p>
+<h2>Symptom</h2>
+<p>The customer sees repeated webhook deliveries, HTTP 429/5xx storm, or business side effects executed twice for one upstream event.</p>
+<h2>Diagnostic order</h2>
+<ol>
+<li>Read the delivery log for attempt count, next retry time, and terminal status. Default backoff is exponential: 1m, 5m, 15m, 1h, then dead-letter.</li>
+<li>Confirm the consumer returns 2xx only after durable commit. Returning 200 before local write causes safe retries to look like duplicates.</li>
+<li>Require consumers to deduplicate by event identifier. Northstar Workspace guarantees at-least-once delivery, not exactly-once.</li>
+<li>For HTTP 429, check consumer rate limits and pause subscription only when approved by a support lead.</li>
+<li>Do not enable bulk replay across an entire day from the agent console. Bulk replay is a high-risk operation and must go through HITL.</li>
+</ol>
+<h2>Conflict note</h2>
+<p>If one document recommends immediate bulk replay and another forbids it without approval, treat the conflict as unresolved evidence and abstain from automatic bulk actions.</p>
+<h2>Safety boundary</h2>
+<p>Service credits offered because of webhook outages are financial actions. Agents may draft the request, but grant_service_credit must enter HITL with evidence_ids.</p>
+<h2>Success criteria</h2>
+<p>Retry storm stops, dead-lettered events are replayed one-by-one with stable event identifiers, and the customer confirms exactly one business effect per event.</p>
+</article></body></html>

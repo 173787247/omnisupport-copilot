@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni://contracts/product/handling_plan_card/v1",
+  "title": "HandlingPlanCard",
+  "description": "Structured problem-handling plan card for OmniSupport Copilot final capstone.",
+  "type": "object",
+  "required": [
+    "summary",
+    "steps",
+    "citations",
+    "confidence",
+    "needs_clarification",
+    "abstain_reason",
+    "proposed_action",
+    "release_id",
+    "trace_id"
+  ],
+  "properties": {
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "One-sentence diagnosis without inventing unproven root causes."
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {"type": "string", "minLength": 1, "maxLength": 300}
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "source"],
+        "properties": {
+          "evidence_id": {"type": "string"},
+          "source": {"type": "string"},
+          "doc_id": {"type": ["string", "null"]},
+          "chunk_id": {"type": ["string", "null"]},
+          "quote": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "needs_clarification": {"type": "boolean"},
+    "abstain_reason": {"type": ["string", "null"]},
+    "proposed_action": {
+      "type": "object",
+      "required": ["operation", "control"],
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": ["none", "add_internal_note", "grant_service_credit"]
+        },
+        "control": {
+          "type": "string",
+          "enum": ["none", "confirm", "hitl"]
+        },
+        "reason": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "release_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "data_release_id": {"type": ["string", "null"]},
+    "index_release_id": {"type": ["string", "null"]},
+    "prompt_release_id": {"type": ["string", "null"]},
+    "theme": {"type": "string", "const": "webhook-troubleshooting"},
+    "protected_identifiers": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}
