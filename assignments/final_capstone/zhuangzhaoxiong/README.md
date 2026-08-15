@@ -2,7 +2,7 @@
 
 **学员**：庄昭雄（GitHub: [173787247](https://github.com/173787247)）  
 **主题**：B. Webhook 错误排查  
-**分支**：`homework/final-capstone-webhook-zhuangzhaoxiong`
+**分支**：[`homework/final-capstone-webhook-zhuangzhaoxiong`](https://github.com/173787247/omnisupport-copilot/tree/homework/final-capstone-webhook-zhuangzhaoxiong)
 
 ## 验收摘要
 
@@ -32,6 +32,38 @@ known_limitations:
 ## 一句话
 
 在现有 OmniSupport Capstone 上新增小型 Webhook 知识包，并通过 Product API 输出「问题处理方案卡」：有证据才给诊断与 ≤3 步；不足则澄清/拒答；低风险备注需确认，财务授信必须 HITL；用 Golden Set、契约测试与 Release/回滚说明证明可上线。
+
+## 快速导航（本作业包）
+
+| 文档 | 链接 |
+|------|------|
+| 架构设计 | [design/architecture.md](./design/architecture.md) |
+| 方案卡 Schema | [contracts/handling_plan_card.schema.json](./contracts/handling_plan_card.schema.json) |
+| Skill 说明 | [contracts/skill_handling_plan_card.md](./contracts/skill_handling_plan_card.md) |
+| Golden Set | [evals/golden_set.jsonl](./evals/golden_set.jsonl) |
+| 知识文档 401 | [data/workspace-webhook-signature-401.html](./data/workspace-webhook-signature-401.html) |
+| 知识文档 retry/dedup | [data/workspace-webhook-retry-dedup.html](./data/workspace-webhook-retry-dedup.html) |
+| Manifest | [data/manifest_webhook_final_pack.json](./data/manifest_webhook_final_pack.json) |
+| Baseline | [reports/baseline.md](./reports/baseline.md) |
+| Eval 报告 | [reports/eval_report.md](./reports/eval_report.md) |
+| Live 证据 | [reports/live_evidence.json](./reports/live_evidence.json) |
+| Offline E2E JSON | [reports/e2e_report.json](./reports/e2e_report.json) |
+| Release/回滚 | [reports/release_and_rollback.md](./reports/release_and_rollback.md) |
+| 演示稿 | [demo/demo_script.md](./demo/demo_script.md) |
+| 反思 | [reflection.md](./reflection.md) |
+
+## 仓库内对应实现（同分支）
+
+| 内容 | 链接 |
+|------|------|
+| 产品侧 Schema | [`contracts/product/handling_plan_card.schema.json`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/contracts/product/handling_plan_card.schema.json) |
+| 方案卡构建 | [`services/copilot_api/app/handling_plan.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/services/copilot_api/app/handling_plan.py) |
+| Product API 端点 | [`services/copilot_api/app/main.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/services/copilot_api/app/main.py) |
+| 知识包（入库） | [`data/capstone/knowledge/`](https://github.com/173787247/omnisupport-copilot/tree/homework/final-capstone-webhook-zhuangzhaoxiong/data/capstone/knowledge) |
+| Offline 评测 | [`scripts/capstone/eval_handling_plan.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/scripts/capstone/eval_handling_plan.py) |
+| Live 证据采集 | [`scripts/capstone/collect_live_evidence.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/scripts/capstone/collect_live_evidence.py) |
+| 契约测试 | [`tests/contract/test_handling_plan_card.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/tests/contract/test_handling_plan_card.py) |
+| Golden Set（仓库） | [`evals/sets/final_capstone_webhook_plan_v1.jsonl`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/evals/sets/final_capstone_webhook_plan_v1.jsonl) |
 
 ## 快速启动
 
@@ -67,24 +99,4 @@ QUERY_REWRITE_MODEL=qwen3:4b
 
 `POST /api/v1/handling-plan`（需登录 Product API）
 
-返回契约见 `contracts/product/handling_plan_card.schema.json`。
-
-## 本作业目录
-
-| 路径 | 内容 |
-|------|------|
-| `design/architecture.md` | 问题、边界、主链 |
-| `data/` | 2 份合成知识文档 |
-| `contracts/` | 方案卡 Schema |
-| `evals/golden_set.jsonl` | C1–C8 |
-| `reports/` | baseline / eval / release / live_evidence |
-| `demo/demo_script.md` | 8 分钟演示稿 |
-| `reflection.md` | 反思题 |
-
-仓库内对应实现：
-
-- 知识：`data/capstone/knowledge/workspace-webhook-*.html`
-- 构建：`services/copilot_api/app/handling_plan.py`
-- 端点：`services/copilot_api/app/main.py` → `/api/v1/handling-plan`
-- 评测：`scripts/capstone/eval_handling_plan.py`
-- Live 证据：`scripts/capstone/collect_live_evidence.py`
+返回契约见作业包 [contracts/handling_plan_card.schema.json](./contracts/handling_plan_card.schema.json)，以及仓库正式契约 [contracts/product/handling_plan_card.schema.json](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/contracts/product/handling_plan_card.schema.json)。
