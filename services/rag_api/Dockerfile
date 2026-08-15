@@ -11,7 +11,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Python 依赖
 COPY services/rag_api/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir \
+    --default-timeout=120 \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
+    --trusted-host mirrors.aliyun.com \
+    -r requirements.txt
 
 # 源码
 COPY services/rag_api/app/ ./app/

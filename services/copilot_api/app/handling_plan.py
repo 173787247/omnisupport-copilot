@@ -101,11 +101,14 @@ def needs_clarification(question: str, *, has_evidence: bool) -> bool:
     q = (question or "").strip()
     if not q:
         return True
+    # Ambiguous / underspecified asks must clarify even if retrieval returns noisy hits.
+    if not ERROR_CODE_RE.search(q) and (AMBIGUOUS_RE.search(q) or len(q.split()) < 6):
+        return True
     if ERROR_CODE_RE.search(q):
         return False
     if has_evidence:
         return False
-    return bool(AMBIGUOUS_RE.search(q)) or len(q.split()) < 6
+    return False
 
 
 def build_handling_plan_card(
@@ -120,7 +123,9 @@ def build_handling_plan_card(
     identifiers = extract_protected_identifiers(question)
     clarify = needs_clarification(question, has_evidence=bool(citations))
 
-    if clarify and not citations:
+    if clarify:
+        # Do not present noisy retrieval as a concrete diagnosis for vague asks.
+        citations = []
         abstain_reason = abstain_reason or "missing_product_or_error_context"
         summary = "需要补充产品线、Webhook 错误码或 HTTP 状态后才能给出可执行方案。"
         steps: list[str] = []
@@ -133,18 +138,23 @@ def build_handling_plan_card(
     else:
         answer_text = str(rag.get("answer") or "").strip()
         summary = answer_text.splitlines()[0][:500] if answer_text else "已检索到相关证据，按文档顺序排查。"
-        # Preserve identifiers explicitly in summary metadata path even if model paraphrases.
         for token in identifiers:
             if token not in summary:
                 summary = f"{summary} (preserved: {token})"
                 break
         steps = _steps_from_answer(answer_text, limit=3)
-        abstain_reason = None if confidence >= 0.35 else (abstain_reason or "low_confidence")
+        # Low confidence with real citations stays cautious but still returns grounded steps.
+        # Only mark abstain when retrieval itself failed.
+        if confidence < 0.15 and not identifiers:
+            abstain_reason = abstain_reason or "low_confidence"
+        else:
+            abstain_reason = None
 
+    # Proposed actions are recommendations under explicit confirm/HITL, not auto-executions.
     action = decide_action(
         question,
-        has_evidence=bool(citations) and abstain_reason is None,
-        abstain=abstain_reason is not None,
+        has_evidence=bool(citations),
+        abstain=abstain_reason is not None and not citations,
     )
 
     return {

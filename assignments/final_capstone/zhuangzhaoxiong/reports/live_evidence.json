@@ -1,0 +1,478 @@
+{
+  "ticket_id": "TKT-20260706-900123",
+  "conversation_id": "conv_c2d6c918ccd04dde9498aa2d21777838",
+  "grounded_message": {
+    "message_id": "msg_8a66f9411d354a37867abd02f64bba00",
+    "trace_id": "e5f16d5232333f8bca335d0966594bbc",
+    "evidence_ids": [
+      "anchor-9673493885c626688260e1ed",
+      "anchor-3e673bdead8b30ff14bffd3f",
+      "anchor-820d793cf385523ea330efe8",
+      "anchor-12b6b7e32cff7d47572ff9b2",
+      "anchor-302d502a0748cdcd14fc9ffd"
+    ],
+    "generation_mode": "deterministic_fallback"
+  },
+  "plans": {
+    "C1": {
+      "status_code": 200,
+      "body": {
+        "summary": "AI 生成服务未配置，以下返回最相关证据摘要作为可审计 fallback： (preserved: WS-WEBHOOK-401)",
+        "steps": [
+          "AI 生成服务未配置，以下返回最相关证据摘要作为可审计 fallback：",
+          "Northstar Workspace administrator access recovery"
+        ],
+        "citations": [
+          {
+            "evidence_id": "anchor-0816aa6340ab5d3e80866c58",
+            "source": "doc:capstone:workspace-admin-recovery",
+            "doc_id": "doc-e13ba5a828134d241ff23030",
+            "chunk_id": "chunk-cda12c4b229f57c806fb419e",
+            "quote": "Northstar Workspace administrator access recovery"
+          },
+          {
+            "evidence_id": "anchor-32b93e76e5301179b958725c",
+            "source": "doc:capstone:workspace-api-webhook",
+            "doc_id": "doc-7790d3146706dcecba6bc3af",
+            "chunk_id": "chunk-5a0d19441928635314aad7ca",
+            "quote": "Support agents may replay a single failed delivery. Bulk replay, secret rotation, and endpoint ownership changes require a support lead. Webhook payloads may contain customer identifiers and must not be copied into public chat."
+          },
+          {
+            "evidence_id": "anchor-dfd2cd7f275de3277d7de934",
+            "source": "doc:capstone:workspace-webhook-retry-dedup",
+            "doc_id": "doc-5648937e07452badd55b3fec",
+            "chunk_id": "chunk-15c68fad240882f2d1947c0c",
+            "quote": "Service credits offered because of webhook outages are financial actions. Agents may draft the request, but grant_service_credit must enter HITL with evidence_ids."
+          },
+          {
+            "evidence_id": "anchor-9673493885c626688260e1ed",
+            "source": "doc:capstone:workspace-webhook-signature-401",
+            "doc_id": "doc-d1c5e9556608f757e53d276e",
+            "chunk_id": "chunk-f989156984a1d4107b6fb8e6",
+            "quote": "Support agents must not paste signing secrets into chat, tickets that customers can read, or Phoenix traces. Secret rotation is a privileged change and requires HITL when performed by OmniSupport tools."
+          },
+          {
+            "evidence_id": "anchor-c5cdaaf6803718c557d989b1",
+            "source": "audio:week07:call001",
+            "doc_id": "doc-6c3164332c49c1c11b66ce24",
+            "chunk_id": "chunk-6f29a9f292f3b49b70e0ea7b",
+            "quote": "The customer cannot access the workspace dashboard after a password reset."
+          }
+        ],
+        "confidence": 0.031,
+        "needs_clarification": false,
+        "abstain_reason": null,
+        "proposed_action": {
+          "operation": "add_internal_note",
+          "control": "confirm",
+          "reason": "low_risk_note_requires_explicit_confirm"
+        },
+        "release_id": "capstone-v1.0.0",
+        "trace_id": "abe6a7ee5b9cad424ac4382cd9d1db5a",
+        "data_release_id": "data-capstone-v1",
+        "index_release_id": "index-capstone-v1",
+        "prompt_release_id": "prompt-capstone-v1",
+        "theme": "webhook-troubleshooting",
+        "protected_identifiers": [
+          "WS-WEBHOOK-401",
+          "3.2"
+        ],
+        "retrieval_debug": {
+          "mode": "hybrid_rrf",
+          "rrf_k": 60,
+          "rerank_enabled": true,
+          "rerank_fallback": true,
+          "filters_applied": {
+            "product_line": "northstar_workspace",
+            "visibility_scope": "internal",
+            "data_release_id": "data-capstone-v1",
+            "index_release_id": "index-capstone-v1",
+            "graph_release_id": "graph-capstone-v1",
+            "retrieval_mode": "hybrid",
+            "graph_visibility_scope": "internal",
+            "tenant_id": "northstar-demo",
+            "query_rewrite_prompt_release_id": "query-rewrite-v1"
+          },
+          "results": [
+            {
+              "chunk_id": "chunk-cda12c4b229f57c806fb419e",
+              "vector_score": 0.07179285903019572,
+              "fts_score": 7.599999904632568,
+              "rrf_score": 0.031099324975891997,
+              "rerank_score": null,
+              "final_score": 0.031099324975891997
+            },
+            {
+              "chunk_id": "chunk-5a0d19441928635314aad7ca",
+              "vector_score": 0.0,
+              "fts_score": 12.0,
+              "rrf_score": 0.01639344262295082,
+              "rerank_score": null,
+              "final_score": 0.01639344262295082
+            },
+            {
+              "chunk_id": "chunk-15c68fad240882f2d1947c0c",
+              "vector_score": 0.05908894186681868,
+              "fts_score": 0.0,
+              "rrf_score": 0.016129032258064516,
+              "rerank_score": null,
+              "final_score": 0.016129032258064516
+            },
+            {
+              "chunk_id": "chunk-f989156984a1d4107b6fb8e6",
+              "vector_score": 0.0,
+              "fts_score": 10.600000381469727,
+              "rrf_score": 0.016129032258064516,
+              "rerank_score": null,
+              "final_score": 0.016129032258064516
+            },
+            {
+              "chunk_id": "chunk-6f29a9f292f3b49b70e0ea7b",
+              "vector_score": 0.04981991351724191,
+              "fts_score": 0.0,
+              "rrf_score": 0.015873015873015872,
+              "rerank_score": null,
+              "final_score": 0.015873015873015872
+            }
+          ]
+        },
+        "query_rewrite_debug": {
+          "mode": "fallback",
+          "provider": "deterministic",
+          "model": "rules-v1",
+          "prompt_release_id": "query-rewrite-v1",
+          "rewrite_reasons": [
+            "preserve_lexical_identifiers"
+          ],
+          "fallback_reason": "llm_not_configured",
+          "original_query_sha256": "sha256:bef2d3fef9a14a5abe2d9b3a91095f884e3abe84fbd60b23274dd6c4e0655947",
+          "semantic_query_sha256": "sha256:bef2d3fef9a14a5abe2d9b3a91095f884e3abe84fbd60b23274dd6c4e0655947",
+          "original_query_length": 120,
+          "semantic_query_length": 120,
+          "lexical_term_count": 4,
+          "hyde_used": false,
+          "attempts": 0,
+          "safety_repairs": [],
+          "cache_hit": false,
+          "coalesced": false,
+          "circuit_state": "closed",
+          "latency_ms": 0.09
+        },
+        "generation_mode": "deterministic_fallback",
+        "generation_provider": "fallback",
+        "generation_model": "none"
+      }
+    },
+    "C3": {
+      "status_code": 200,
+      "body": {
+        "summary": "需要补充产品线、Webhook 错误码或 HTTP 状态后才能给出可执行方案。",
+        "steps": [],
+        "citations": [],
+        "confidence": 0.031,
+        "needs_clarification": true,
+        "abstain_reason": "missing_product_or_error_context",
+        "proposed_action": {
+          "operation": "none",
+          "control": "none",
+          "reason": "no_safe_action_without_evidence"
+        },
+        "release_id": "capstone-v1.0.0",
+        "trace_id": "dcd81e8d59467f3d8c7791f77c48b22c",
+        "data_release_id": "data-capstone-v1",
+        "index_release_id": "index-capstone-v1",
+        "prompt_release_id": "prompt-capstone-v1",
+        "theme": "webhook-troubleshooting",
+        "protected_identifiers": [],
+        "retrieval_debug": {
+          "mode": "hybrid_rrf",
+          "rrf_k": 60,
+          "rerank_enabled": true,
+          "rerank_fallback": true,
+          "filters_applied": {
+            "product_line": "northstar_workspace",
+            "visibility_scope": "internal",
+            "data_release_id": "data-capstone-v1",
+            "index_release_id": "index-capstone-v1",
+            "graph_release_id": "graph-capstone-v1",
+            "retrieval_mode": "hybrid",
+            "graph_visibility_scope": "internal",
+            "tenant_id": "northstar-demo",
+            "query_rewrite_prompt_release_id": "query-rewrite-v1"
+          },
+          "results": [
+            {
+              "chunk_id": "chunk-fd915362f012598b4bfdb06f",
+              "vector_score": 0.046212346332529464,
+              "fts_score": 3.799999952316284,
+              "rrf_score": 0.03149801587301587,
+              "rerank_score": null,
+              "final_score": 0.03149801587301587
+            },
+            {
+              "chunk_id": "chunk-e4d0c3f353d81b09e318cdd0",
+              "vector_score": 0.03078729286789894,
+              "fts_score": 3.799999952316284,
+              "rrf_score": 0.029437229437229435,
+              "rerank_score": null,
+              "final_score": 0.029437229437229435
+            },
+            {
+              "chunk_id": "chunk-5f9f9bd22c78862cc8e6823d",
+              "vector_score": 0.04742228894962608,
+              "fts_score": 0.0,
+              "rrf_score": 0.01639344262295082,
+              "rerank_score": null,
+              "final_score": 0.01639344262295082
+            },
+            {
+              "chunk_id": "chunk-7e13b46887ee3ad7b5d0dcb7",
+              "vector_score": 0.0,
+              "fts_score": 4.800000190734863,
+              "rrf_score": 0.01639344262295082,
+              "rerank_score": null,
+              "final_score": 0.01639344262295082
+            },
+            {
+              "chunk_id": "chunk-beda275473657df4d137892f",
+              "vector_score": 0.04742228894962608,
+              "fts_score": 0.0,
+              "rrf_score": 0.016129032258064516,
+              "rerank_score": null,
+              "final_score": 0.016129032258064516
+            }
+          ]
+        },
+        "query_rewrite_debug": {
+          "mode": "fallback",
+          "provider": "deterministic",
+          "model": "rules-v1",
+          "prompt_release_id": "query-rewrite-v1",
+          "rewrite_reasons": [
+            "identity_rewrite"
+          ],
+          "fallback_reason": "llm_not_configured",
+          "original_query_sha256": "sha256:fd1a8f8471bb4b2a5b93324ba1961e1e0b4f7749d326ef2dfcf9ab3d28146748",
+          "semantic_query_sha256": "sha256:fd1a8f8471bb4b2a5b93324ba1961e1e0b4f7749d326ef2dfcf9ab3d28146748",
+          "original_query_length": 19,
+          "semantic_query_length": 19,
+          "lexical_term_count": 0,
+          "hyde_used": false,
+          "attempts": 0,
+          "safety_repairs": [],
+          "cache_hit": false,
+          "coalesced": false,
+          "circuit_state": "closed",
+          "latency_ms": 0.05
+        },
+        "generation_mode": "deterministic_fallback",
+        "generation_provider": "fallback",
+        "generation_model": "none"
+      }
+    },
+    "C6": {
+      "status_code": 200,
+      "body": {
+        "summary": "AI 生成服务未配置，以下返回最相关证据摘要作为可审计 fallback： (preserved: WS-WEBHOOK-5XX)",
+        "steps": [
+          "AI 生成服务未配置，以下返回最相关证据摘要作为可审计 fallback：",
+          "Version 3.2. Support visibility: internal. Error codes: WS-WEBHOOK-401 and WS-SIG-MISMATCH."
+        ],
+        "citations": [
+          {
+            "evidence_id": "anchor-c71d583f9d9249e9ab7661ed",
+            "source": "doc:capstone:workspace-webhook-signature-401",
+            "doc_id": "doc-d1c5e9556608f757e53d276e",
+            "chunk_id": "chunk-5561796395fe7ecb8e21dc7f",
+            "quote": "Version 3.2. Support visibility: internal. Error codes: WS-WEBHOOK-401 and WS-SIG-MISMATCH."
+          },
+          {
+            "evidence_id": "anchor-804dd0ab2de1ce88aedb3610",
+            "source": "doc:capstone:workspace-webhook-signature-401",
+            "doc_id": "doc-d1c5e9556608f757e53d276e",
+            "chunk_id": "chunk-df97e6af0fc77dea46b60a8c",
+            "quote": "header using HMAC-SHA256 over the raw request body."
+          },
+          {
+            "evidence_id": "anchor-dfd2cd7f275de3277d7de934",
+            "source": "doc:capstone:workspace-webhook-retry-dedup",
+            "doc_id": "doc-5648937e07452badd55b3fec",
+            "chunk_id": "chunk-15c68fad240882f2d1947c0c",
+            "quote": "Service credits offered because of webhook outages are financial actions. Agents may draft the request, but grant_service_credit must enter HITL with evidence_ids."
+          },
+          {
+            "evidence_id": "anchor-de272c2ec38983563ba05a6f",
+            "source": "doc:capstone:workspace-webhook-signature-401",
+            "doc_id": "doc-d1c5e9556608f757e53d276e",
+            "chunk_id": "chunk-d066c2c7441059df81103df0",
+            "quote": "Only after the consumer accepts both secrets, retire the old secret. Bulk secret force-reset requires a support lead."
+          },
+          {
+            "evidence_id": "anchor-fbad2ce009e159ebc43155c3",
+            "source": "doc:capstone:workspace-webhook-retry-dedup",
+            "doc_id": "doc-5648937e07452badd55b3fec",
+            "chunk_id": "chunk-7e13b46887ee3ad7b5d0dcb7",
+            "quote": "Version 3.2. Support visibility: internal. Error codes: WS-WEBHOOK-429, WS-WEBHOOK-5XX, and WS-DUP-EVENT."
+          }
+        ],
+        "confidence": 0.03,
+        "needs_clarification": false,
+        "abstain_reason": null,
+        "proposed_action": {
+          "operation": "grant_service_credit",
+          "control": "hitl",
+          "reason": "financial_side_effect_requires_hitl"
+        },
+        "release_id": "capstone-v1.0.0",
+        "trace_id": "cedaa3decd4efae4c9cdce5b191744a4",
+        "data_release_id": "data-capstone-v1",
+        "index_release_id": "index-capstone-v1",
+        "prompt_release_id": "prompt-capstone-v1",
+        "theme": "webhook-troubleshooting",
+        "protected_identifiers": [
+          "WS-WEBHOOK-5XX"
+        ],
+        "retrieval_debug": {
+          "mode": "hybrid_rrf",
+          "rrf_k": 60,
+          "rerank_enabled": true,
+          "rerank_fallback": true,
+          "filters_applied": {
+            "product_line": "northstar_workspace",
+            "visibility_scope": "internal",
+            "data_release_id": "data-capstone-v1",
+            "index_release_id": "index-capstone-v1",
+            "graph_release_id": "graph-capstone-v1",
+            "retrieval_mode": "hybrid",
+            "graph_visibility_scope": "internal",
+            "tenant_id": "northstar-demo",
+            "query_rewrite_prompt_release_id": "query-rewrite-v1"
+          },
+          "results": [
+            {
+              "chunk_id": "chunk-5561796395fe7ecb8e21dc7f",
+              "vector_score": 0.035867540441008816,
+              "fts_score": 3.799999952316284,
+              "rrf_score": 0.030330882352941176,
+              "rerank_score": null,
+              "final_score": 0.030330882352941176
+            },
+            {
+              "chunk_id": "chunk-df97e6af0fc77dea46b60a8c",
+              "vector_score": 0.060011129677959074,
+              "fts_score": 0.0,
+              "rrf_score": 0.01639344262295082,
+              "rerank_score": null,
+              "final_score": 0.01639344262295082
+            },
+            {
+              "chunk_id": "chunk-15c68fad240882f2d1947c0c",
+              "vector_score": 0.0,
+              "fts_score": 14.0,
+              "rrf_score": 0.01639344262295082,
+              "rerank_score": null,
+              "final_score": 0.01639344262295082
+            },
+            {
+              "chunk_id": "chunk-d066c2c7441059df81103df0",
+              "vector_score": 0.045330015758277886,
+              "fts_score": 0.0,
+              "rrf_score": 0.016129032258064516,
+              "rerank_score": null,
+              "final_score": 0.016129032258064516
+            },
+            {
+              "chunk_id": "chunk-7e13b46887ee3ad7b5d0dcb7",
+              "vector_score": 0.0,
+              "fts_score": 4.800000190734863,
+              "rrf_score": 0.016129032258064516,
+              "rerank_score": null,
+              "final_score": 0.016129032258064516
+            }
+          ]
+        },
+        "query_rewrite_debug": {
+          "mode": "fallback",
+          "provider": "deterministic",
+          "model": "rules-v1",
+          "prompt_release_id": "query-rewrite-v1",
+          "rewrite_reasons": [
+            "preserve_lexical_identifiers"
+          ],
+          "fallback_reason": "llm_not_configured",
+          "original_query_sha256": "sha256:fd55c8aec468459798de87cc52e969768ab7e07a35789a221ebc5ff92e6fbe4a",
+          "semantic_query_sha256": "sha256:fd55c8aec468459798de87cc52e969768ab7e07a35789a221ebc5ff92e6fbe4a",
+          "original_query_length": 97,
+          "semantic_query_length": 97,
+          "lexical_term_count": 1,
+          "hyde_used": false,
+          "attempts": 0,
+          "safety_repairs": [],
+          "cache_hit": false,
+          "coalesced": false,
+          "circuit_state": "closed",
+          "latency_ms": 0.09
+        },
+        "generation_mode": "deterministic_fallback",
+        "generation_provider": "fallback",
+        "generation_model": "none"
+      }
+    }
+  },
+  "note_first": {
+    "status_code": 200,
+    "body": {
+      "ticket_id": "TKT-20260706-900123",
+      "operation": "add_internal_note",
+      "status": "completed",
+      "trace_id": "4c976e1d462c30c38040125bdec2b0de",
+      "lineage_event_id": "act_75ea79880081474ca57a",
+      "release_id": "capstone-v1.0.0",
+      "approval_id": null,
+      "hitl_required": false
+    }
+  },
+  "note_replay": {
+    "status_code": 200,
+    "body": {
+      "status": "cached",
+      "trace_id": "4c976e1d462c30c38040125bdec2b0de",
+      "operation": "add_internal_note",
+      "ticket_id": "TKT-20260706-900123",
+      "release_id": "capstone-v1.0.0",
+      "approval_id": null,
+      "hitl_required": false,
+      "lineage_event_id": "act_75ea79880081474ca57a",
+      "cached_from": "2026-08-15T06:42:46.765687+00:00"
+    }
+  },
+  "credit": {
+    "status_code": 200,
+    "body": {
+      "ticket_id": "TKT-20260706-900123",
+      "operation": "grant_service_credit",
+      "status": "awaiting_approval",
+      "approval_id": "apr_ad91c7e887b84b108015",
+      "hitl_required": true,
+      "reason_codes": [
+        "risk_level == 'financial'"
+      ],
+      "trace_id": "70bcfcd36ba0d84d6839a767f471d827",
+      "lineage_event_id": "act_55ead393f22b43d58234",
+      "release_id": "capstone-v1.0.0"
+    }
+  },
+  "credit_resume": {
+    "status_code": 200,
+    "body": {
+      "ticket_id": "TKT-20260706-900123",
+      "operation": "grant_service_credit",
+      "status": "completed",
+      "trace_id": "70bcfcd36ba0d84d6839a767f471d827",
+      "lineage_event_id": "act_e5e952dc0a484810826d",
+      "release_id": "capstone-v1.0.0",
+      "approval_id": "apr_ad91c7e887b84b108015",
+      "hitl_required": true
+    }
+  }
+}

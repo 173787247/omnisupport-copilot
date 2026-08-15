@@ -55,8 +55,9 @@ async def apply_additive_migrations(root: Path) -> None:
         for migration in sorted((root / "infra" / "migrations").glob("*.sql")):
             if migration.name == "001_init.sql":
                 continue
-            source = migration.read_text(encoding="utf-8")
-            checksum = hashlib.sha256(source.encode()).hexdigest()
+            raw = migration.read_bytes()
+            checksum = hashlib.sha256(raw).hexdigest()
+            source = raw.decode("utf-8")
             stored = await conn.fetchval(
                 "SELECT checksum FROM app_schema_migration WHERE version = $1",
                 migration.name,

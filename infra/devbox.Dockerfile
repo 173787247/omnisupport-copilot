@@ -26,6 +26,9 @@ COPY scripts ./scripts
 COPY tests ./tests
 
 RUN pip install --no-cache-dir \
+    --default-timeout=120 \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
+    --trusted-host mirrors.aliyun.com \
     -r /tmp/rag_api_requirements.txt \
     -r /tmp/tool_api_requirements.txt \
     -e ".[dev]"

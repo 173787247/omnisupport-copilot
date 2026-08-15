@@ -54,6 +54,18 @@ regression_test: <case added>
 residual_risk: <what remains>
 ```
 
-## Live Trace
+## Live Trace / Live Gates（已实测）
 
-完整 Compose + RAG 拉起后，从 `/api/v1/handling-plan` 响应读取 `trace_id`，到 http://localhost:6006 定位 `product.handling_plan` span。
+证据文件：`reports/live_evidence.json`
+
+| Gate | 结果 |
+|------|------|
+| C1 `/handling-plan` | 200，citations=5，`control=confirm`，保留 `WS-WEBHOOK-401` |
+| C3 歧义问句 | `needs_clarification=true`，`control=none` |
+| C6 财务授信建议 | `control=hitl`，`operation=grant_service_credit` |
+| `add_internal_note` 幂等 | 首次 `completed`，重放同 key → `cached` |
+| `grant_service_credit` HITL | `awaiting_approval` → admin decision → `completed` |
+| representative `trace_id` | `abe6a7ee5b9cad424ac4382cd9d1db5a` |
+
+Phoenix：http://localhost:6006 用上述 `trace_id` 检索。  
+采集脚本：`python -m scripts.capstone.collect_live_evidence`
