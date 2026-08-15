@@ -338,4 +338,57 @@ $$(".nav-item").forEach((button) => button.addEventListener("click", () => {
 }));
 
 bindSuggestions();
+
+function renderPlanCard(card) {
+  const action = card.proposed_action || {};
+  const control = action.control || "none";
+  const clarify = card.needs_clarification;
+  const pills = [
+    `<span class="pill">${escapeHtml(action.operation || "none")}</span>`,
+    `<span class="pill ${control === "hitl" ? "hitl" : control === "confirm" ? "confirm" : ""}">${escapeHtml(control)}</span>`,
+    clarify ? `<span class="pill clarify">needs clarification</span>` : "",
+    card.abstain_reason ? `<span class="pill clarify">${escapeHtml(card.abstain_reason)}</span>` : "",
+    ...(card.protected_identifiers || []).map((id) => `<span class="pill">${escapeHtml(id)}</span>`),
+  ].filter(Boolean).join("");
+  const steps = (card.steps || []).map((step) => `<li>${escapeHtml(step)}</li>`).join("");
+  const citations = (card.citations || []).map((item, index) => {
+    state.citations.set(item.evidence_id, item);
+    return `<button type="button" data-plan-evidence="${escapeHtml(item.evidence_id)}">Source ${index + 1} · ${escapeHtml(item.source || item.doc_id || item.evidence_id)}</button>`;
+  }).join("");
+  $("#plan-card").classList.remove("empty");
+  $("#plan-card").innerHTML = `
+    <h4>Problem handling plan</h4>
+    <div class="plan-meta">${pills}</div>
+    <p class="plan-summary">${escapeHtml(card.summary || "")}</p>
+    ${steps ? `<ol>${steps}</ol>` : ""}
+    ${citations ? `<div class="plan-citations">${citations}</div>` : ""}
+    <div class="plan-trace">release ${escapeHtml(card.release_id || "—")} · confidence ${Number(card.confidence || 0).toFixed(3)} · trace ${escapeHtml(card.trace_id || "—")}</div>
+  `;
+  $$(`[data-plan-evidence]`).forEach((button) => button.addEventListener("click", () => showEvidence(button.dataset.planEvidence)));
+}
+
+$("#plan-generate")?.addEventListener("click", async () => {
+  if (!state.activeCase) return toast("Select a case first.", true);
+  const question = $("#question").value.trim() || "Customer deliveries fail with WS-WEBHOOK-401 after signing secret rotation on Workspace 3.2. What is the recovery order?";
+  $("#plan-card").classList.remove("empty");
+  $("#plan-card").innerHTML = `<p>Generating governed handling plan…</p>`;
+  try {
+    const card = await api("/api/v1/handling-plan", {
+      method: "POST",
+      body: JSON.stringify({
+        question,
+        ticket_id: state.activeCase.ticket_id,
+        product_line: state.activeCase.product_line || "northstar_workspace",
+        retrieval_mode: $("#retrieval-mode").value === "auto" ? "hybrid" : $("#retrieval-mode").value,
+        include_debug: false,
+      }),
+    });
+    renderPlanCard(card);
+    toast("Handling plan card generated.");
+  } catch (error) {
+    $("#plan-card").innerHTML = `<p class="form-error">${escapeHtml(error.message)}</p>`;
+    toast(error.message, true);
+  }
+});
+
 if (state.token && state.user) bootUser();

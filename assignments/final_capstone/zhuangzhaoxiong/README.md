@@ -8,7 +8,7 @@
 
 ```text
 baseline_commit: 1473db6
-candidate_commit: 81a87a6
+candidate_commit: (push tip; feature pack includes UI + rollback drill)
 theme: webhook-troubleshooting
 provider/model: deterministic fallback | ollama optional
 release_id: capstone-v1.0.0
@@ -16,13 +16,15 @@ data_release_id: data-capstone-v1
 index_release_id: index-capstone-v1
 golden_set: 8 cases, 8 passed (offline evaluator pass_rate=1.0)
 contract_tests: 4 passed
-hard_gates: contract + offline eval + live handling-plan + confirm/HITL
-capstone_e2e: pass（verify_e2e，含 Phoenix RAG + HITL）
+hard_gates: G1..G6 pass
+capstone_e2e: pass（e2e_verification.json，含 Phoenix RAG + HITL）
 representative_trace_id: abe6a7ee5b9cad424ac4382cd9d1db5a
 live_evidence: reports/live_evidence.json
   C1 confirm+citations; C3 clarify; C6 hitl
   note completed->cached; credit awaiting_approval->completed
-bootstrap_idempotency: 2nd run tickets skipped=240; chunks skipped=125
+bootstrap_idempotency: bootstrap_second_run.json skipped tickets=240 chunks=125
+rollback_drill: rollback_drill.json candidate->capstone-v1.0.0 restored
+bonus_ui: apps/copilot_console Handling Plan Card + Product OpenAPI link
 known_limitations:
   1) 本地 Compose ≠ 生产 HA/多租户密钥隔离强度
   2) 方案卡步骤抽取对 fallback 文本敏感，真实 LLM 质量需 Ollama/云模型复核
@@ -31,7 +33,7 @@ known_limitations:
 
 ## 一句话
 
-在现有 OmniSupport Capstone 上新增小型 Webhook 知识包，并通过 Product API 输出「问题处理方案卡」：有证据才给诊断与 ≤3 步；不足则澄清/拒答；低风险备注需确认，财务授信必须 HITL；用 Golden Set、契约测试与 Release/回滚说明证明可上线。
+在现有 OmniSupport Capstone 上新增小型 Webhook 知识包，并通过 Product API + Console 方案卡输出结构化诊断：有证据才给步骤；不足则澄清/拒答；低风险备注需确认，财务授信必须 HITL；用 Golden Set、Trace、幂等与 Release 回滚证明可上线。
 
 ## 快速导航（本作业包）
 
@@ -47,8 +49,11 @@ known_limitations:
 | Baseline | [reports/baseline.md](./reports/baseline.md) |
 | Eval 报告 | [reports/eval_report.md](./reports/eval_report.md) |
 | Live 证据 | [reports/live_evidence.json](./reports/live_evidence.json) |
-| Offline E2E JSON | [reports/e2e_report.json](./reports/e2e_report.json) |
-| Release/回滚 | [reports/release_and_rollback.md](./reports/release_and_rollback.md) |
+| Live E2E | [reports/e2e_verification.json](./reports/e2e_verification.json) |
+| 二次 Bootstrap | [reports/bootstrap_second_run.json](./reports/bootstrap_second_run.json) |
+| Rollback 演练 | [reports/rollback_drill.json](./reports/rollback_drill.json) |
+| Offline eval JSON | [reports/e2e_report.json](./reports/e2e_report.json) |
+| Release/回滚说明 | [reports/release_and_rollback.md](./reports/release_and_rollback.md) |
 | 演示稿 | [demo/demo_script.md](./demo/demo_script.md) |
 | 反思 | [reflection.md](./reflection.md) |
 
@@ -58,12 +63,14 @@ known_limitations:
 |------|------|
 | 产品侧 Schema | [`contracts/product/handling_plan_card.schema.json`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/contracts/product/handling_plan_card.schema.json) |
 | 方案卡构建 | [`services/copilot_api/app/handling_plan.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/services/copilot_api/app/handling_plan.py) |
-| Product API 端点 | [`services/copilot_api/app/main.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/services/copilot_api/app/main.py) |
+| Product API | [`services/copilot_api/app/main.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/services/copilot_api/app/main.py) |
+| Console 方案卡 UI（加分） | [`apps/copilot_console/`](https://github.com/173787247/omnisupport-copilot/tree/homework/final-capstone-webhook-zhuangzhaoxiong/apps/copilot_console) |
+| Product OpenAPI | http://localhost:8002/docs |
 | 知识包（入库） | [`data/capstone/knowledge/`](https://github.com/173787247/omnisupport-copilot/tree/homework/final-capstone-webhook-zhuangzhaoxiong/data/capstone/knowledge) |
 | Offline 评测 | [`scripts/capstone/eval_handling_plan.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/scripts/capstone/eval_handling_plan.py) |
 | Live 证据采集 | [`scripts/capstone/collect_live_evidence.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/scripts/capstone/collect_live_evidence.py) |
+| 回滚演练打包 | [`scripts/capstone/final_score_pack.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/scripts/capstone/final_score_pack.py) |
 | 契约测试 | [`tests/contract/test_handling_plan_card.py`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/tests/contract/test_handling_plan_card.py) |
-| Golden Set（仓库） | [`evals/sets/final_capstone_webhook_plan_v1.jsonl`](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/evals/sets/final_capstone_webhook_plan_v1.jsonl) |
 
 ## 快速启动
 
@@ -79,8 +86,11 @@ docker compose --profile tools --env-file infra/env/.env.local -f infra/docker-c
   python -m scripts.capstone.verify_e2e
 docker compose --profile tools --env-file infra/env/.env.local -f infra/docker-compose.yml run --rm \
   -e LIVE_EVIDENCE_HOST=0 -e PRODUCT_API_URL=http://copilot_api:8002 \
-  -e PYTHONPATH=/workspace:/workspace/services/copilot_api \
   --workdir /workspace devbox python -m scripts.capstone.collect_live_evidence
+docker compose --profile tools --env-file infra/env/.env.local -f infra/docker-compose.yml run --rm \
+  -e PRODUCT_API_URL=http://copilot_api:8002 \
+  -e DATABASE_URL=postgresql://omni:omnipass@postgres:5432/omnisupport \
+  --workdir /workspace devbox python -m scripts.capstone.final_score_pack
 ```
 
 可选真实模型（Ollama）：
@@ -95,8 +105,9 @@ QUERY_REWRITE_PROVIDER=ollama
 QUERY_REWRITE_MODEL=qwen3:4b
 ```
 
-## 方案卡 API
+## 方案卡 API / 加分 UI
 
-`POST /api/v1/handling-plan`（需登录 Product API）
-
-返回契约见作业包 [contracts/handling_plan_card.schema.json](./contracts/handling_plan_card.schema.json)，以及仓库正式契约 [contracts/product/handling_plan_card.schema.json](https://github.com/173787247/omnisupport-copilot/blob/homework/final-capstone-webhook-zhuangzhaoxiong/contracts/product/handling_plan_card.schema.json)。
+- API：`POST /api/v1/handling-plan`（登录后）
+- OpenAPI：http://localhost:8002/docs
+- Console：`apps/copilot_console` 右侧 **Handling plan card**（Generate plan）
+- 契约：作业包 [contracts/handling_plan_card.schema.json](./contracts/handling_plan_card.schema.json)

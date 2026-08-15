@@ -49,6 +49,7 @@
         <a href="http://localhost:3000" target="_blank" rel="noreferrer">Dagster ↗</a>
         <a href="http://localhost:6006" target="_blank" rel="noreferrer">Phoenix ↗</a>
         <a href="http://localhost:9001" target="_blank" rel="noreferrer">MinIO ↗</a>
+        <a href="http://localhost:8002/docs" target="_blank" rel="noreferrer">Product OpenAPI ↗</a>
       </div>
       <button id="logout" class="user-chip"><span id="user-initials">LC</span><span><b id="user-name">Lin Chen</b><small id="user-role">support_agent</small></span></button>
     </aside>
@@ -94,6 +95,14 @@
           </div>
           <div id="chat" class="chat"><div class="chat-empty"><div class="orb"></div><h3>Ask from the case.</h3><p>答案只基于已发布证据。没有足够证据时，系统会明确拒答。</p><div class="suggestions"><button>如何恢复 Workspace 管理员访问？</button><button>这个错误码的排查顺序是什么？</button><button>汇总跨文档的恢复策略。</button></div></div></div>
           <form id="chat-form" class="composer"><textarea id="question" rows="2" placeholder="Ask about this case and the governed knowledge base…" required></textarea><div><small>RAG → evidence → answer → audit</small><button class="send" type="submit" aria-label="Send">↑</button></div></form>
+          <div class="plan-card-shell">
+            <div class="panel-head plan-head">
+              <div><p class="eyebrow">FINAL CAPSTONE</p><h3>Handling plan card</h3></div>
+              <button id="plan-generate" class="secondary" type="button">Generate plan</button>
+            </div>
+            <p class="plan-hint">调用 <code>POST /api/v1/handling-plan</code>，输出结构化诊断 / 步骤 / 引用 / 确认或 HITL。OpenAPI：<a href="http://localhost:8002/docs#/default/handling_plan_api_v1_handling_plan_post" target="_blank" rel="noreferrer">/docs</a></p>
+            <div id="plan-card" class="plan-card empty"><p>选择工单后输入问题，生成方案卡。</p></div>
+          </div>
         </section>
       </section>
 

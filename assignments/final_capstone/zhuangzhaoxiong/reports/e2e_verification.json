@@ -1,0 +1,95 @@
+{
+  "status": "pass",
+  "run_id": "d8b14894b0ed",
+  "checks": {
+    "runtime": {
+      "status": "ok",
+      "service": "copilot_api",
+      "release_id": "capstone-v1.0.0",
+      "checks": {
+        "postgres": "ok",
+        "rag_api": "ok",
+        "tool_api": "ok"
+      }
+    },
+    "identity": {
+      "tenant_id": "northstar-demo",
+      "agent_role": "support_agent",
+      "admin_role": "admin"
+    },
+    "case_queue": {
+      "ticket_id": "TKT-20260706-900123",
+      "product_line": "northstar_workspace"
+    },
+    "rag": {
+      "message_id": "msg_fa4e53afe60646d897d0d4287955695f",
+      "trace_id": "68eb8b2b58d5787a4bfbdf7365638bfe",
+      "confidence": 0.031,
+      "evidence_count": 5,
+      "release_id": "capstone-v1.0.0",
+      "generation_mode": "deterministic_fallback",
+      "generation_provider": "fallback",
+      "generation_model": "none"
+    },
+    "feedback": {
+      "status": "persisted"
+    },
+    "kpi": {
+      "row_count": 98,
+      "audit_id": "492414bd-7bff-438d-a81e-03684336b2f3",
+      "policies": [
+        "tool_contract",
+        "metric_registry",
+        "safe_view",
+        "parameterized_sql",
+        "semantic_aggregation",
+        "tenant_scope_filter",
+        "org_scope_filter"
+      ]
+    },
+    "low_risk_action": {
+      "ticket_id": "TKT-20260706-900123",
+      "operation": "add_internal_note",
+      "status": "completed",
+      "trace_id": "9129a8852b6da78b95a73c80b7cc21ed",
+      "lineage_event_id": "act_0355f655ef6548f0954c",
+      "release_id": "capstone-v1.0.0",
+      "approval_id": null,
+      "hitl_required": false
+    },
+    "hitl": {
+      "approval_id": "apr_88ea8afccb0a432fbcde",
+      "wait_trace_id": "9456b1bd35dab81f79aa3d958829b4c4",
+      "resume_trace_id": "9059196c2a6d192551af5fdc04efded9",
+      "status": "completed"
+    },
+    "phoenix_rag": {
+      "trace_id": "68eb8b2b58d5787a4bfbdf7365638bfe",
+      "span_count": 19,
+      "required_spans": [
+        "product.copilot.answer",
+        "rag.audit.persist",
+        "rag.query",
+        "rag.retrieve.hybrid"
+      ]
+    },
+    "phoenix_hitl_wait": {
+      "trace_id": "9456b1bd35dab81f79aa3d958829b4c4",
+      "span_count": 12,
+      "required_spans": [
+        "agent.lineage.persist",
+        "hitl.evaluate",
+        "hitl.wait"
+      ]
+    },
+    "phoenix_hitl_resume": {
+      "trace_id": "9059196c2a6d192551af5fdc04efded9",
+      "span_count": 7,
+      "required_spans": [
+        "agent.lineage.persist",
+        "hitl.resume",
+        "tool.execute.ticket_update"
+      ]
+    }
+  }
+}

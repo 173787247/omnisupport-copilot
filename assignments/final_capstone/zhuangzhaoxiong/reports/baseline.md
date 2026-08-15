@@ -29,3 +29,9 @@ docker compose --profile tools --env-file infra/env/.env.local -f infra/docker-c
 ```
 
 预期：`reports/capstone/e2e-verification.json` 顶层 `status=pass`；二次 bootstrap 不翻倍。
+
+本候选已保存到作业包：
+
+- [`e2e_verification.json`](./e2e_verification.json)
+- [`bootstrap_second_run.json`](./bootstrap_second_run.json)
+- [`rollback_drill.json`](./rollback_drill.json)

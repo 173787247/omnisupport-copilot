@@ -10,7 +10,7 @@
 
 ## 2:30–4:30 方案卡
 
-调用 `POST /api/v1/handling-plan`：
+调用 `POST /api/v1/handling-plan`（同时打开 Console **Handling plan card** 与 `/docs`）：
 
 1. 正常：`WS-WEBHOOK-401` → steps + citations
 2. 歧义：`webhook not working` → clarification/abstain
@@ -27,7 +27,7 @@
 
 - 展示 golden set 与 offline eval JSON
 - Phoenix 打开 `trace_id`
-- 说明 release 绑定与 rollback 命令
+- 展示 `rollback_drill.json`：candidate → `capstone-v1.0.0` 恢复
 
 ## 7:30–8:00 反思一句
 

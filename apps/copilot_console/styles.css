@@ -222,3 +222,21 @@ dialog form { display: grid; gap: 16px; padding: 24px; }
   .approval-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .approval-actions button { min-width: 0; white-space: normal; }
 }
+
+/* Final-capstone handling plan card */
+.plan-card-shell { border-top: 1px solid var(--line); background: rgba(255,255,251,.92); }
+.plan-head { height: auto; min-height: 58px; }
+.plan-hint { margin: 0; padding: 0 18px 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.plan-hint a { color: var(--green); font-weight: 700; }
+.plan-card { margin: 0 14px 14px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #fffef8; max-height: 280px; overflow: auto; }
+.plan-card.empty { color: var(--muted); font-size: 12px; }
+.plan-card h4 { margin: 0 0 8px; font-family: Georgia, serif; font-weight: 400; font-size: 18px; }
+.plan-card .plan-summary { margin: 0 0 10px; line-height: 1.5; font-size: 13px; }
+.plan-card ol { margin: 0 0 10px; padding-left: 18px; font-size: 12px; line-height: 1.55; }
+.plan-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.plan-meta .pill.hitl { border-color: var(--orange); color: #8a3a1d; background: rgba(240,119,75,.12); }
+.plan-meta .pill.confirm { border-color: var(--blue); color: #243f9a; background: rgba(72,103,232,.1); }
+.plan-meta .pill.clarify { border-color: var(--red); color: var(--red); background: rgba(193,67,50,.08); }
+.plan-citations { display: grid; gap: 6px; }
+.plan-citations button { text-align: left; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.85); padding: 8px 10px; font-size: 11px; }
+.plan-trace { margin-top: 10px; font-size: 10px; color: var(--muted); word-break: break-all; }

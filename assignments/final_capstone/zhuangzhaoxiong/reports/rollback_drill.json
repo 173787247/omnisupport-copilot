@@ -1,0 +1,66 @@
+{
+  "collected_at": "2026-08-15T07:12:08.135914+00:00",
+  "copied_reports": {
+    "bootstrap_second_run": "assignments/final_capstone/zhuangzhaoxiong/reports/bootstrap_second_run.json",
+    "e2e_verification": "assignments/final_capstone/zhuangzhaoxiong/reports/e2e_verification.json"
+  },
+  "rollback_drill": {
+    "status": "rolled_back",
+    "before": {
+      "release_id": "capstone-v1.0.0",
+      "generation": 1
+    },
+    "promoted_candidate": {
+      "release_id": "capstone-final-webhook-candidate-v1",
+      "manifest_digest": "sha256:43df2c316d286bfea53f2a7e381c756eb39395514e8273858cafeb3a67724f40",
+      "generation": 2,
+      "observed_active": "capstone-final-webhook-candidate-v1",
+      "observed_generation": 2
+    },
+    "after": {
+      "release_id": "capstone-v1.0.0",
+      "generation": 3,
+      "rollback_generation": 3,
+      "audit_event_id": "527e16fc-1079-44d0-b803-d8848d4d6585"
+    },
+    "target_was_direct_previous_of_candidate": true,
+    "verified_active_restored": true
+  },
+  "post_rollback_handling_plan_smoke": {
+    "C1": {
+      "status_code": 200,
+      "release_id": "capstone-v1.0.0",
+      "trace_id": "54f516d815d7af9212eabc3cfd17a228",
+      "citations": 5,
+      "control": "confirm",
+      "needs_clarification": false,
+      "abstain_reason": null,
+      "protected_identifiers": [
+        "WS-WEBHOOK-401",
+        "3.2"
+      ]
+    },
+    "C3": {
+      "status_code": 200,
+      "release_id": "capstone-v1.0.0",
+      "trace_id": "710ba8ca23d4c7f12cafd5d779d19b63",
+      "citations": 0,
+      "control": "none",
+      "needs_clarification": true,
+      "abstain_reason": "missing_product_or_error_context",
+      "protected_identifiers": []
+    },
+    "C8": {
+      "status_code": 200,
+      "release_id": "capstone-v1.0.0",
+      "trace_id": "04f51867ca9841299bff42b956a68dbe",
+      "citations": 5,
+      "control": "confirm",
+      "needs_clarification": false,
+      "abstain_reason": null,
+      "protected_identifiers": [
+        "WS-WEBHOOK-401"
+      ]
+    }
+  }
+}
