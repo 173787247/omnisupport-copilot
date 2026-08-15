@@ -8,14 +8,14 @@
 
 ```text
 baseline_commit: 1473db6
-candidate_commit: <push 后填写>
+candidate_commit: 1d4afb6
 theme: webhook-troubleshooting
 provider/model: deterministic fallback | ollama optional
 release_id: capstone-final-webhook-v1
-golden_set: 8 cases (offline evaluator)
-hard_gates: G1..G6 designed; contract tests + offline eval green
+golden_set: 8 cases, 8 passed (offline evaluator pass_rate=1.0)
+hard_gates: contract tests pass; offline eval pass; live E2E after full bootstrap
 capstone_e2e: run after full compose bootstrap
-representative_trace_id: see reports/eval_report.md after live run
+representative_trace_id: fill from live /handling-plan response
 known_limitations:
   1) 本地 Compose ≠ 生产 HA/多租户密钥隔离强度
   2) 方案卡步骤抽取对 fallback 文本敏感，真实 LLM 质量需 Ollama/云模型复核
